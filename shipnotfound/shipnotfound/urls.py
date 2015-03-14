@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', '_404shipnotfound.views.index', name='index'),
+    url(r'^home/', '_404shipnotfound.views.home', name='home'),
 )
 
 if settings.DEBUG:

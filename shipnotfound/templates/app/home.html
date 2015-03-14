@@ -1,0 +1,29 @@
+{% extends 'app/base.html' %}
+
+
+{% block title %}Index{% endblock %}
+
+        {% block body_block %}
+        {% if games %}
+            <table id = "leaderboard" class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Score</th> 
+                    <th>Date</th>
+                </tr>
+                {% for game in games %}
+                     <tr>
+                        <td>{{ game.user }}</td>
+                        <td>{{ game.score }}</td> 
+                        <td>{{ game.date }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+                
+        {% endif %}
+        
+        
+
+       
+        {% endblock %}
