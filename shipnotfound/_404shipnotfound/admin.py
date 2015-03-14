@@ -1,3 +1,5 @@
 from django.contrib import admin
+from _404shipnotfound.models import UserProfile, Game
 
-# Register your models here.
+admin.site.register(UserProfile)
+admin.site.register(Game)
