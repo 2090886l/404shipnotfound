@@ -6,6 +6,7 @@
             <div align="center">
             <img src="{% static 'logo.jpg' %}" alt="Picture of logo" />
             {% if user.is_authenticated %}
+                <br></br>
                 <form><input class="btn btn-success" type="button" value="Play" onClick="window.location.href='/home'" 
                 style="width:250px; !important; height:60px !important; font-size:24px;"></form>                
             {% else %}

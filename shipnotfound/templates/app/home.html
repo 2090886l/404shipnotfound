@@ -4,24 +4,36 @@
 {% block title %}Index{% endblock %}
 
         {% block body_block %}
-        {% if games %}
-            <table id = "leaderboard" class="table">
-                <tr>
-                    <th>Name</th>
-                    <th>Score</th> 
-                    <th>Date</th>
-                </tr>
-                {% for game in games %}
-                     <tr>
-                        <td>{{ game.user }}</td>
-                        <td>{{ game.score }}</td> 
-                        <td>{{ game.date }}</td>
+        <br></br>
+        <br></br>
+        <div>
+            <div align= "right">
+            {% if games %}
+                <table id = "leaderboard" class="table table-hover" style="width: 500px;">
+                    <tr class="info">
+                        <th>Name</th>
+                        <th>Score</th> 
+                        <th>Date</th>
                     </tr>
-                {% endfor %}
-            </table>
-
-                
-        {% endif %}
+                    {% for game in games %}
+                         <tr class="warning">
+                            <td>{{ game.user }}</td>
+                            <td>{{ game.score }}</td> 
+                            <td>{{ game.date }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endif %}
+            <div align= "left-side">
+                {% if user.is_authenticated %}
+                    {{user.username}}
+                    <img alt = "User's photo" src = "{{profile.picture.url}}" height="270" width ="480"/>
+                {% endif %}
+                    
+            </div>
+        </div>
+        
         
         
 
