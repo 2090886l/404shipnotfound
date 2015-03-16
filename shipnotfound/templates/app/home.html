@@ -7,7 +7,33 @@
         <br></br>
         <br></br>
         <div>
-            <div align= "right">
+            <div class = "col-md-4" align= "left-side">
+                {% if user.is_authenticated %}
+                    <p>User info</p>
+                    <h2>{{user.username}}</h2>
+                    <img alt = "User's photo" src = "{{profile.picture.url}}" height="270" width ="480"/>
+                {% else %}
+                    <p>Not signed in</p>
+                {% endif %}
+            </div>
+            <div class = "col-md-4" align = "center">
+                <form action="">
+                    <input type="radio" name="difficulty" value="male">Easy
+                    <input type="radio" name="difficulty" value="male">Normal
+                    <input type="radio" name="difficulty" value="female">Hard
+                </form>
+                <br/>
+                <form>
+                    <input class="btn btn-success" type="button" value="Play" onClick="window.location.href='/home'"
+                    style="width:250px; !important; height:60px !important; font-size:24px;">
+                </form>
+                <br/>
+                <form>
+                    <input class="btn btn-warning" type="button" value="How to play" onClick="window.location.href='/howToPlay'"
+                    style="width:200px; height:48px ; font-size:24px;">
+                </form>
+            </div>
+            <div class= "col-md-4" align = "center">
             {% if games %}
                 <table id = "leaderboard" class="table table-hover" style="width: 500px;">
                     <tr class="info">
@@ -25,13 +51,7 @@
                 </table>
             </div>
             {% endif %}
-            <div align= "left-side">
-                {% if user.is_authenticated %}
-                    {{user.username}}
-                    <img alt = "User's photo" src = "{{profile.picture.url}}" height="270" width ="480"/>
-                {% endif %}
-                    
-            </div>
+
         </div>
         
         
