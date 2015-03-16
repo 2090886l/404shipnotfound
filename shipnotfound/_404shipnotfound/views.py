@@ -17,3 +17,7 @@ def home(request):
         userprofile = ""
 
     return render(request, 'app/home.html', {"games" : list, "profile" : userprofile})
+
+def howToPlay(request):
+    
+    return render(request, 'app/how_to_play.html')
