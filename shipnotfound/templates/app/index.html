@@ -4,26 +4,31 @@
 
         {% block body_block %}
             <div align="center">
-            <img src="{% static 'logo.jpg' %}" alt="Picture of logo" />
+                {% if user.is_authenticated %}
+                    <h2>Hi {{ user.username }} <br/> Welcome to</h2>
+                {% endif %}
+                <img src="{% static 'logo.jpg' %}" alt="Picture of logo" width="250px" height="200px"/>
             {% if user.is_authenticated %}
                 <br></br>
-                <form><input class="btn btn-success" type="button" value="Play" onClick="window.location.href='/home'" 
-                style="width:250px; !important; height:60px !important; font-size:24px;"></form>                
+                <form><input class="btn btn-success" type="button" value="Play" onClick="window.location.href='/home'"
+                style="width:250px; !important; height:60px !important; font-size:24px;"></form>
+                <br/><br/>
+                <form><input class="btn btn-warning" type="button" value="How to play" onClick="window.location.href='/howToPlay'"
+                             style="width:200px; height:48px ; font-size:24px;"></form>
             {% else %}
-
-                    <form><input class="btn btn-success" type="button" value="Play as a guest" onClick="window.location.href='/home'" 
+                    <form><input class="btn btn-success" type="button" value="Play as a guest" onClick="window.location.href='/home'"
                     style="width:300px;  height:80px; font-size:24px;"></form>
                     <br><br/>
                     <form><input class="btn btn-warning" type="button" value="How to play" onClick="window.location.href='/howToPlay'"
-                    style="width:200px; height:48px ; font-size:24px;"></form>    
+                    style="width:200px; height:48px ; font-size:24px;"></form>
                     <br><br/>
                     <div style="width:450px;">
-                    <div style="float: left; width: 225px"> 
-                    <form><input class="btn btn-warning" type="button" value="Login" onClick="window.location.href='accounts/login'" 
+                    <div style="float: left; width: 225px">
+                    <form><input class="btn btn-warning" type="button" value="Login" onClick="window.location.href='accounts/login'"
                     style="width:200px; height:60px;  font-size:24px; display:inline-block" ></form>
                     </div>
-                    <div style="float: right; width: 225px"> 
-                    <form><input class="btn btn-warning" type="button" value="Register" onClick="window.location.href='accounts/register'" 
+                    <div style="float: right; width: 225px">
+                    <form><input class="btn btn-warning" type="button" value="Register" onClick="window.location.href='accounts/register'"
                     style="width:200px; height:60px;  font-size:24px; display:inline-block"></form>
                     </div>
                     </div>
