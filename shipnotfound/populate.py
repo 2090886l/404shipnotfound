@@ -16,7 +16,7 @@ def populate():
     for c in Game.objects.all():
             print c.date
 
-def add_game(user, score):  
+def add_game(user, score):
     g = Game.objects.get_or_create(user = user, score = score)[0]
     return g
 

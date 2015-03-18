@@ -12,6 +12,7 @@ class UserProfile(models.Model):
 class Game(models.Model):
     user = models.ForeignKey(User)
     score = models.IntegerField(default=0)
-    date = models.DateTimeField(auto_now_add=True)  
+    date = models.DateTimeField(auto_now_add=True)
+    win = models.BooleanField(default=False)
     def __unicode__(self):
         return unicode(self.date)

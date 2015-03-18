@@ -11,8 +11,11 @@
                 {% if user.is_authenticated %}
                     <h2>{{user.username}}</h2>
                     <img alt = "User's photo" src = "{{profile.picture.url}}" height="230" width ="390"/>
+                    <p>Plays: {{ games_played }}<br/> Wins: {{ wins }}<br/> Losses: {{ losses }}</p>
                 {% else %}
                     <p>Not signed in</p>
+                    <input class="btn btn-success" type="button" value="Log In" onClick={% url 'auth_login' %}">
+                    <input class="btn btn-success" type="button" value="Register" onClick={% url 'registration_register' %}>
                 {% endif %}
             </div>
             <div class = "col-md-5" align = "center">
