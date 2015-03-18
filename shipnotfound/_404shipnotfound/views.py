@@ -22,3 +22,7 @@ def home(request):
 def howToPlay(request):
 
     return render(request, 'app/how_to_play.html')
+
+def play(request):
+
+    return render(request, 'app/play.html')

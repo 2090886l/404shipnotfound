@@ -14,8 +14,9 @@ urlpatterns = patterns('',
 
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', '_404shipnotfound.views.index', name='index'),
+    url(r'^index/$', '_404shipnotfound.views.index', name='index'),
     url(r'^home/', '_404shipnotfound.views.home', name='home'),
+    url(r'^play/', '_404shipnotfound.views.play', name='play'),
     url(r'^howToPlay/', '_404shipnotfound.views.howToPlay', name='howToPlay'),
     (r'^accounts/', include('registration.backends.simple.urls')),
 )

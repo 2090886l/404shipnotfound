@@ -7,16 +7,15 @@
         <br></br>
         <br></br>
         <div>
-            <div class = "col-md-4" align= "left-side">
+            <div class = "col-md-3" align= "left-side">
                 {% if user.is_authenticated %}
-                    <p>User info</p>
                     <h2>{{user.username}}</h2>
-                    <img alt = "User's photo" src = "{{profile.picture.url}}" height="270" width ="480"/>
+                    <img alt = "User's photo" src = "{{profile.picture.url}}" height="230" width ="390"/>
                 {% else %}
                     <p>Not signed in</p>
                 {% endif %}
             </div>
-            <div class = "col-md-4" align = "center">
+            <div class = "col-md-5" align = "center">
                 <form action="">
                     <input type="radio" name="difficulty" value="male">Easy
                     <input type="radio" name="difficulty" value="male">Normal
@@ -24,7 +23,7 @@
                 </form>
                 <br/>
                 <form>
-                    <input class="btn btn-success" type="button" value="Play" onClick="window.location.href='/home'"
+                    <input class="btn btn-success" type="button" value="Play" onClick="window.location.href='/play'"
                     style="width:250px; !important; height:60px !important; font-size:24px;">
                 </form>
                 <br/>
@@ -33,18 +32,19 @@
                     style="width:200px; height:48px ; font-size:24px;">
                 </form>
             </div>
-            <div class= "col-md-4" align = "center">
+            <div class= "col-md-4" align = "right-side">
             {% if games %}
-                <table id = "leaderboard" class="table table-hover" style="width: 500px;">
+                <h3 align = "center">High Score Board</h3>
+                <table id = "leaderboard" class="table table-hover">
                     <tr class="info">
                         <th>Name</th>
-                        <th>Score</th> 
+                        <th>Score</th>
                         <th>Date</th>
                     </tr>
                     {% for game in games %}
                          <tr class="warning">
-                            <td>{{ game.user }}</td>
-                            <td>{{ game.score }}</td> 
+                            <td >{{ game.user }}</td>
+                            <td>{{ game.score }}</td>
                             <td>{{ game.date }}</td>
                         </tr>
                     {% endfor %}
