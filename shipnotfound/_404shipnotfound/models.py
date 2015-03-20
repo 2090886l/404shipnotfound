@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     high_score = models.IntegerField(default=0)
-    picture = models.ImageField(upload_to='profile_images', blank=True) #still working on picture
+    picture = models.ImageField(upload_to='profile_images', blank=True, default="static/brightkite.png")
     def __unicode__(self):
         return unicode(self.user.username)
         
