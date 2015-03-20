@@ -1,13 +1,11 @@
 {% extends 'app/base.html' %}
 
-
 {% block title %}Index{% endblock %}
 
         {% block body_block %}
-        <br></br>
-        <br></br>
+        <br/><br/>
         <div>
-            <div class = "col-md-3" align= "left-side">
+            <div class = "col-md-4" align= "left-side">
                 {% if user.is_authenticated %}
                     <h2>{{user.username}}</h2>
                     <img alt = "User's photo" src = "{{profile.picture.url}}" height="230" width ="390"/>
@@ -18,7 +16,7 @@
                     <input class="btn btn-success" type="button" value="Register" onClick={% url 'registration_register' %}>
                 {% endif %}
             </div>
-            <div class = "col-md-5" align = "center">
+            <div class = "col-md-4" align = "center">
                 <form action="">
                     <input type="radio" name="difficulty" value="male">Easy
                     <input type="radio" name="difficulty" value="male">Normal
@@ -54,11 +52,7 @@
                 </table>
             </div>
             {% endif %}
-
+            
         </div>
-        
-        
-        
 
-       
-        {% endblock %}
+{% endblock %}

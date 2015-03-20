@@ -1,5 +1,6 @@
 {% extends 'app/base.html' %}
 
+{% load static %}
 
 {% block title %}How to Play{% endblock %}
 
@@ -10,10 +11,22 @@
         </div>
 
         <div align="center">
-            <h3>Rules</h3>
-            <p>blah...</p>
-            <h3>Controls</h3>
-            <p>blah...</p>
+            <h3>Object of the Game</h3>
+            <p>Be the first to sink all 5 of your opponent’s ships</p>
+            <h3>Contents</h3>
+            <p>There are two grids, defensive and offensive grids. The defensive grid is your grid with your boats laid out.
+                The Offensive grid is the grid you are attacking; the aim is to guess where your opponent’s ships are.
+            </p>
+            <p><img alt = "hit" src = "{% static 'hit.jpg' %}" /> For a hit
+            <img alt = "hit" src = "{% static 'nohit.jpg' %}" /> For a miss
+            <img alt = "hit" src = "{% static 'sea.jpg' %}" /> For not bombed </p>
+            <p>On the right hand side is the “Captain’s Log” which logs the shots taken by you and your opponent. </p>
+            <h3>How to Play</h3>
+            <p>You and your opponent will alternate turns, with each turn being logged in the “Captain’s Log”.
+                Simply click on one of your opponent’s locations to bomb that location.
+                Each player has 5 ships, one ship length 5, one ship length 4, two ships length 3 and one ship length 2. </p>
+            <h3>Winning the Game</h3>
+            <p>If you sink your opponent’s entire fleet of 5 ships before their sink your fleet, then you win the game.</p>
         </div>
         <br/>
         <a href="/home/"  class="btn btn-success"></span> Go Back</a><br />
