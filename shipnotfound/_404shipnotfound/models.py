@@ -6,7 +6,7 @@ class UserProfile(models.Model):
     high_score = models.IntegerField(default=0)
     picture = models.ImageField(upload_to='profile_images', blank=True) #still working on picture
     def __unicode__(self):
-        return unicode(self.user)
+        return unicode(self.user.username)
         
         
 class Game(models.Model):

@@ -8,9 +8,9 @@
         
 	        {% if registered %}
 	        <strong>Your profile has been updated successfully!</strong>
-	        <a href="/rango/">Return to the homepage.</a><br />
+	        <a href="/home/">Return to the homepage.</a><br />
 	        {% else %}
-	        <form id="user_form" method="post" action="/rango/add_profile/"
+	        <form id="user_form" method="post" action="/add_profile/"
 	                enctype="multipart/form-data">
 
 	            {% csrf_token %}

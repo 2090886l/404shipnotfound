@@ -18,7 +18,9 @@ urlpatterns = patterns('',
     url(r'^home/', '_404shipnotfound.views.home', name='home'),
     url(r'^play/', '_404shipnotfound.views.play', name='play'),
     url(r'^howToPlay/', '_404shipnotfound.views.howToPlay', name='howToPlay'),
+	url(r'^add_profile/', '_404shipnotfound.views.register_profile', name = 'add_profile'),
     (r'^accounts/', include('registration.backends.simple.urls')),
+	
 )
 
 if settings.DEBUG:
