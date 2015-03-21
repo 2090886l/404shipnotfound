@@ -1,24 +1,22 @@
 {% extends "app/base.html" %}
 
 	{% block body_block %}
-        <div class="page-header">
-        
-        <h1>Edit profile information</h1>
-        </div>
-        
+        <br></br>
+        <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">           
 	        {% if registered %}
-	        <strong>Your profile has been updated successfully!</strong>
-	        <a href="/home/">Return to the homepage.</a><br />
+                <strong>Your profile has been updated successfully!</strong>
+                <a href="/home/">Return to the homepage.</a><br />
 	        {% else %}
-	        <form id="user_form" method="post" action="/add_profile/"
+                <form class="form-signin" id="user_form" method="post" action="/add_profile/"
 	                enctype="multipart/form-data">
-
-	            {% csrf_token %}
-
-	            {{ profile_form.as_p }}
-
-	            <input type="submit" name="submit" value="Update" />
-	        </form>
+                    <div class="page-header">
+                        <h1>Edit Profile</h1>
+                    </div>
+                    {% csrf_token %}
+                    {{ profile_form.as_p }}
+                    <br></br>
+                    <button class="btn btn-lg btn-success btn-block" type="submit" value="Submit" />Update</button>
+                </form>
 	        {% endif %}
 
 	{% endblock %}

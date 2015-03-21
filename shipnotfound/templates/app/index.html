@@ -7,7 +7,7 @@
                 {% if user.is_authenticated %}
                     <h2>Hi {{ user.username }} <br/> Welcome to</h2>
                 {% endif %}
-                <img src="{% static 'logo.jpg' %}" alt="Picture of logo" width="250px" height="200px"/>
+                <img src="{% static 'logo.jpg' %}" alt="Picture of logo" width="25%" height="25%"/>
             {% if user.is_authenticated %}
                 <br></br>
                 <form><input class="btn btn-success" type="button" value="Play" onClick="window.location.href='/home'"

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     high_score = models.IntegerField(default=0)
-    picture = models.ImageField(upload_to='profile_images', blank=True, default="static/brightkite.png")
+    picture = models.ImageField(upload_to='profile_images', blank=True)
 
     def save(self, *args, **kwargs):
         if self.high_score < 0:

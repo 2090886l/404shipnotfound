@@ -3,12 +3,15 @@
 {% block title %}Index{% endblock %}
 
         {% block body_block %}
+
+        <br/><br/>
+        <br/><br/>
         <br/><br/>
         <div>
             <div class = "col-md-4" align= "left-side">
                 {% if user.is_authenticated %}
                     <h2>{{user.username}}</h2>
-                    <img alt = "User's photo" src = "{{profile.picture.url}}" height="230" width ="390"/>
+                    <img alt = "User's photo" src = "{{profile.picture.url}}" class = "img-thumbnail">
                     <p>Plays: {{ games_played }}<br/> Wins: {{ wins }}<br/> Losses: {{ losses }}</p>
                 {% else %}
                     <p>Not signed in</p>
@@ -17,12 +20,16 @@
                 {% endif %}
             </div>
             <div class = "col-md-4" align = "center">
-                <form action="">
-                    <input type="radio" name="difficulty" value="male">Easy
-                    <input type="radio" name="difficulty" value="male">Normal
-                    <input type="radio" name="difficulty" value="female">Hard
-                </form>
-                <br/>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Easy
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Normal
+                </label>
+                <label class="radio-inline">
+                  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> Hard
+                </label>
+                <br> <br/>
                 <form>
                     <input class="btn btn-success" type="button" value="Play" onClick="window.location.href='/play'"
                     style="width:250px; !important; height:60px !important; font-size:24px;">
@@ -44,7 +51,7 @@
                     </tr>
                     {% for game in games %}
                          <tr class="warning">
-                            <td >{{ game.user }}</td>
+                            <td>{{ game.user }}</td>
                             <td>{{ game.score }}</td>
                             <td>{{ game.date }}</td>
                         </tr>

@@ -1,23 +1,45 @@
 {% extends 'app/base.html' %}
-{% load static %}
-{% block title %}Play{% endblock %}
 
-    {% block body_block %}
+{% block body_block %}
 
-        <div class="page-header">
-            <h1>Play Battleships</h1>
-        </div>
-        <div class = "col-md-5" align= "center">
+    <div class="page-header">
+        <h1>Play Battleships</h1>
+    </div>
+    <br></br>
+    <br></br>
+
+     <table style="width: 100% ">
+      <tr>
+        <td align="center">
+            <h4>Offensive Grid</h4>
+                <div id="board"></div>
+        </td>
+        <td align ="center">    
+            <h4>Log</h4>
+                <div id="log"></div>
+        </td>
+        <td align = "center">    
             <h4>Defensive Grid</h4>
-            <div style="width:400px;height:400px;border:1px solid #000;">Defensive board</div>
-        </div>
-        <div class = "col-md-5" align= "center">
-            <h4>Offensive Grid </h4>
-            <div style="width:400px;height:400px;border:1px solid #000;">Offensive board</div>
-        </div>
-        <div class = "col-md-2" align= "left">
-            <h4>Captian's Log</h4>
-            <div class="table table-striped" style="height:400px;width:200px;overflow:scroll;border:1px solid #000000;">Your turn<br/>You
-                missed at 4,A<br/> He missed at 7,B<br/>Your turn<br/>...</div>
-        </div>
-    {% endblock %}
+                <div id="board2"></div>
+        </td>
+      </tr>
+    </table>  
+
+    <script>
+    // Create the array of ships.
+    var cords = new Array(10);
+        for (var i = 0; i < 10; i++) {
+            cords[i] = new Array(10);
+        }
+    var cords2 = new Array(10);
+        for (var i = 0; i < 10; i++) {
+            cords2[i] = new Array(10);
+        }
+    // Your score.
+    var score = 0;
+    newGrid();
+    newOpponent();
+    placeShips(cords);
+    placeShips(cords2);
+    </script>
+{% endblock %}

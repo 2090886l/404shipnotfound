@@ -1,0 +1,33 @@
+div#board{
+	border:#999 1px solid;
+	width:382px;
+	height:382px;
+}
+div#board2{
+	border:#999 1px solid;
+	width:382px;
+	height:382px;
+}
+div#log {
+    width: 150px;
+    height: 400px;
+    overflow: scroll;
+}
+div#board > div{
+	background: url(../img/sea.jpg) no-repeat;
+	border:#000 1px solid;
+	width:38px;
+	height:38px;
+	float:left;
+	cursor:pointer;
+	text-align:center;
+}
+div#board2 > div{
+	background: url(../img/sea.jpg) no-repeat;
+	border:#000 1px solid;
+	width:38px;
+	height:38px;
+	float:left;
+	cursor:pointer;
+	text-align:center;
+}
