@@ -12,8 +12,8 @@
                     <p>Plays: {{ games_played }}<br/> Wins: {{ wins }}<br/> Losses: {{ losses }}</p>
                 {% else %}
                     <p>Not signed in</p>
-                    <input class="btn btn-success" type="button" value="Log In" onClick={% url 'auth_login' %}">
-                    <input class="btn btn-success" type="button" value="Register" onClick={% url 'registration_register' %}>
+                    <input class="btn btn-success" type="button" value="Log In" onClick= "window.location.href='/accounts/login/'">
+                    <input class="btn btn-success" type="button" value="Register" onClick="window.location.href='/accounts/register/'">
                 {% endif %}
             </div>
             <div class = "col-md-4" align = "center">
