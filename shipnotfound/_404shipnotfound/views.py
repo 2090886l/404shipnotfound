@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from  django.http import HttpResponse, HttpResponseRedirect
 from _404shipnotfound.models import Game, UserProfile
 from _404shipnotfound.forms import UserProfileForm
 from django.contrib.auth.decorators import login_required
@@ -66,3 +67,17 @@ def howToPlay(request):
 def play(request):
 
     return render(request, 'app/play.html')
+    
+    
+@login_required
+def record(request, type, score):
+    if type == "1":
+        Game.objects.get_or_create(user = request.user, score = score, win = True)[0]
+    else:
+        Game.objects.get_or_create(user = request.user, score = score, win = False)[0]
+    return HttpResponseRedirect('/home')
+    
+# @login_required  
+# def win(request):
+
+    # return render(request, 'app/play.html')    

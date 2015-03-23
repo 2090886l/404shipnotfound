@@ -1,3 +1,42 @@
+function updateNextMoves(i,j) {
+	if (i < 9 && i > 0 && j < 9 && j > 0) {
+		nextMove = [];
+		nextMove.push(i+1,j);
+		nextMove.push(i-1,j);
+		nextMove.push(i,j+1);
+		nextMove.push(i,j-1);
+	}
+	else if (i == 9 && j == 0) {
+		nextMove = [];
+	    nextMove.push(i,j+1);
+		nextMove.push(i-1,j);
+	}
+	else if (i == 9 && j !=0 ) {
+		nextMove = [];
+	    nextMove.push(i,j+1);
+		nextMove.push(i-1,j);
+		nextMove.push(i,j-1);
+	}
+	else if (i !=0 && j==9) {
+		nextMove = [];
+	    nextMove.push(i,j-1);
+		nextMove.push(i-1,j);
+		nextMove.push(i+1,j);
+	}
+	else if (i==0 && j != 9) {
+		nextMove = [];
+	    nextMove.push(i,j-1);
+		nextMove.push(i+1,j);
+		nextMove.push(i+1,j+1);
+	}
+	else if (i !=9 & j==0) {
+		nextMove = [];
+	    nextMove.push(i,j+1);
+		nextMove.push(i+1,j);
+		nextMove.push(i-1,j);
+	}
+}
+
 function checkForWin(cords) {
     for (var i=0;i<10;i++) {
 	    for (var j=0;j<10;j++) {
@@ -48,9 +87,18 @@ function newOpponent() {
 function bomb(square,i,j){
 	var oppX = Math.floor(Math.random()*10);
 	var oppY = Math.floor(Math.random()*10);
+	if (nextMove.length > 0 && hard) {
+        var oppX = nextMove.shift();
+	    var oppY = nextMove.shift();
+	}
 	while (cords2[oppX][oppY] == 0) {
-		var oppX = Math.floor(Math.random()*10);
-	    var oppY = Math.floor(Math.random()*10);
+	    if (nextMove.length > 0 && hard) {
+		    var oppX = nextMove.shift();
+	        var oppY = nextMove.shift();
+	    } else {
+	        var oppX = Math.floor(Math.random()*10);
+	        var oppY = Math.floor(Math.random()*10);
+		}
 	}
 	if (cords[parseInt(i)][parseInt(j)] == 0) {
 		return;
@@ -70,8 +118,8 @@ function bomb(square,i,j){
 		document.getElementById('log').scrollTop = 9999999;
 	}
 	if (checkForWin(cords)) {
-	    window.alert("Your score: " + (100 - score));
-		document.write("Congratulations!!");
+		window.location.replace("/record/1/" + (100-score));
+        window.alert("Your game has been recorded. Your score: " + (100 - score) );
 	}
 	var oppSquare = getElementInsideContainer("board2", "square_"+oppX+" "+oppY)
 	if (cords2[oppX][oppY] == 1) {
@@ -79,6 +127,7 @@ function bomb(square,i,j){
 		oppSquare.style.backgroundImage="url('../../static/img/hit.jpg')";
 		document.getElementById('log').innerHTML += "<br />" + " Opp hit: (" + (oppX+1) + "," + (oppY+1) + ")";
 		document.getElementById('log').scrollTop = 9999999;
+        updateNextMoves(oppX,oppY);
 	}
 	else {
 		cords2[oppX][oppY] = 0;
@@ -87,7 +136,7 @@ function bomb(square,i,j){
 		document.getElementById('log').scrollTop = 9999999;
 	}
 	if (checkForWin(cords2)) {
-	    window.alert("The computer won.");
-		document.write("Loser!!");
+        window.location.replace("/record/0/" + 0);
+	    window.alert("The computer won. Your game has been recorded. Your score: 0 ");
 	}
 }

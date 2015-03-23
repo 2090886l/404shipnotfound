@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^play/', '_404shipnotfound.views.play', name='play'),
     url(r'^howToPlay/', '_404shipnotfound.views.howToPlay', name='howToPlay'),
 	url(r'^add_profile/', '_404shipnotfound.views.register_profile', name = 'add_profile'),
+    url(r'^record/(?P<type>\d+)/(?P<score>\d+)/$', '_404shipnotfound.views.record', name = 'record'),
     (r'^accounts/', include('registration.backends.simple.urls')),
 	
 )
