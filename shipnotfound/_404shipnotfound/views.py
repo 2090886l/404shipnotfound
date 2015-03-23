@@ -71,11 +71,15 @@ def play(request, difficulty):
     
 
 def record(request, type, score):
+
     if request.user.is_authenticated():
-        if type == "1":
-            Game.objects.create(user = request.user, score = score, win = True)
-        else:
-            Game.objects.create(user = request.user, score = score, win = False)
+        try:       
+            if type == "1":
+                Game.objects.create(user = request.user, score = score, win = True)
+            else:
+                Game.objects.create(user = request.user, score = score, win = False)
+        except:
+            pass
     return HttpResponseRedirect('/home')
     
 # @login_required  
