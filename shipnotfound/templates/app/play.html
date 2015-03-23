@@ -26,6 +26,11 @@
     </table>  
 
     <script>
+    if ({{difficulty}} == "2") {
+        var hard = true;
+    } else {
+        var hard = false;
+    }
     // Create the array of ships.
     var cords = new Array(10);
         for (var i = 0; i < 10; i++) {
@@ -38,7 +43,6 @@
     // Your score.
     var score = 0;
     var nextMove = new Array();
-    var hard = true;
     newGrid();
     newOpponent();
     placeShips(cords);

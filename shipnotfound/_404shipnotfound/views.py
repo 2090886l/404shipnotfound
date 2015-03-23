@@ -64,17 +64,18 @@ def howToPlay(request):
 
     return render(request, 'app/how_to_play.html')
 
-def play(request):
+def play(request, difficulty):
 
-    return render(request, 'app/play.html')
+    return render(request, 'app/play.html', {"difficulty" : difficulty})
     
     
-@login_required
+
 def record(request, type, score):
-    if type == "1":
-        Game.objects.get_or_create(user = request.user, score = score, win = True)[0]
-    else:
-        Game.objects.get_or_create(user = request.user, score = score, win = False)[0]
+    if request.user.is_authenticated():
+        if type == "1":
+            Game.objects.create(user = request.user, score = score, win = True)
+        else:
+            Game.objects.create(user = request.user, score = score, win = False)
     return HttpResponseRedirect('/home')
     
 # @login_required  

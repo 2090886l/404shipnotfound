@@ -118,8 +118,13 @@ function bomb(square,i,j){
 		document.getElementById('log').scrollTop = 9999999;
 	}
 	if (checkForWin(cords)) {
-		window.location.replace("/record/1/" + (100-score));
-        window.alert("Your game has been recorded. Your score: " + (100 - score) );
+        if (hard) {
+            score = 100 - score;
+        } else {
+            score = parseInt((100 - score)/2);
+        }
+        window.location.replace("/record/1/" + (score));
+        window.alert("Your game has been recorded. Your score: " + (score) );
 	}
 	var oppSquare = getElementInsideContainer("board2", "square_"+oppX+" "+oppY)
 	if (cords2[oppX][oppY] == 1) {
