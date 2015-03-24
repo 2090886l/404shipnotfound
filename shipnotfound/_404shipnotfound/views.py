@@ -45,20 +45,22 @@ def home(request):
     losses = 0
     high_score = 0
     max_date = Game.objects.latest('date').date
+    if request.user.is_authenticated():
 
-    try:
-        userprofile = UserProfile.objects.get(user = request.user.id)
-        high_score = userprofile.high_score
-    except UserProfile.DoesNotExist:
-        pass
+        try:
+            userprofile = UserProfile.objects.get(user = request.user.id)
+            high_score = userprofile.high_score
+        except UserProfile.DoesNotExist:
+            userprofile = UserProfile.objects.create(user = request.user, high_score = 0, picture = "/static/img/ship.jpg")
+            pass
 
-    for game in Game.objects.all():
-        if request.user == game.user:
-            if game.win == True:
-                wins = wins + 1
-            else:
-                losses = losses + 1
-            games = games + 1
+        for game in Game.objects.all():
+            if request.user == game.user:
+                if game.win == True:
+                    wins = wins + 1
+                else:
+                    losses = losses + 1
+                games = games + 1
 
     return render(request, 'app/home.html', {"games" : list, "profile" : userprofile, "games_played" : games, "wins" : wins, "losses" : losses, "last_played": max_date, "high_score": high_score})
 
@@ -86,12 +88,12 @@ def record(request, type, score):
 
         try:
             userprofile = UserProfile.objects.get(user = request.user)
-            if score > userprofile.high_score:
+            if int(score) > userprofile.high_score:
                 userprofile.high_score = score
                 userprofile.save()
+                
         except UserProfile.DoesNotExist:
             pass
-
     return HttpResponseRedirect('/home')
     
 # @login_required  
