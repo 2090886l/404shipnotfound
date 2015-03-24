@@ -5,7 +5,7 @@
         {% block body_block %}
         <div>
             <br/>
-            <div class = "col-md-4" align= "left-side">
+            <div class = "col-md-4" align= "center" border>
                 {% if user.is_authenticated %}
                     <h2>{{user.username}}</h2>
                     <img alt = "User's photo" src = "{{profile.picture.url}}" class = "img-thumbnail">
@@ -21,14 +21,14 @@
                 {% endif %}
             </div>
             <div class = "col-md-4" align = "center">
-                <br> <br/>
+                <h1>Play</h1>
                 <form>
                     <input class="btn btn-success" type="button" value="Easy" onClick="window.location.href='/play/1'"
                     style="width:250px; !important; height:60px !important; font-size:24px;">
                 </form>
                 <form>
                 <br></br>
-                    <input class="btn btn-success" type="button" value="Hard" onClick="window.location.href='/play/2'"
+                    <input class="btn btn-danger" type="button" value="Hard" onClick="window.location.href='/play/2'"
                     style="width:250px; !important; height:60px !important; font-size:24px;">
                 </form>
                 <br/>
@@ -37,9 +37,9 @@
                     style="width:200px; height:48px ; font-size:24px;">
                 </form>
             </div>
-            <div class= "col-md-4" align = "right-side">
+            <div class= "col-md-4" align = "center">
             {% if games %}
-                <h3 align = "center">High Score Board</h3>
+                <h2 align = "center">High Score Board</h2>
                 <table id = "leaderboard" class="table table-hover">
                     <tr class="info">
                         <th>Name</th>
@@ -54,8 +54,11 @@
                         </tr>
                     {% endfor %}
                 </table>
-            </div>
+            {% else %}
+                <strong> No games found! </strong>
+
             {% endif %}
+            </div>
 
         </div>
 

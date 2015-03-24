@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
+<div class="page-wrap">  
   <head>
     
     <meta charset="utf-8">
@@ -25,6 +26,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+  
 
   <body>
 
@@ -43,14 +45,12 @@
           <ul class="nav navbar-nav navbar-right">
               <li><a href="{% url 'home' %}?next=/home/">Home</a></li>
             {% if user.is_authenticated %}
-                <li><a href="{% url 'auth_password_change' %}">Change password</a></li>
-                <li><a href="{% url 'auth_logout' %}?next=/home/">Logout</a></li>
 				<li><a href="{% url 'add_profile' %}?next=/home/">Edit profile</a></li>
+                <li><a href="{% url 'auth_logout' %}?next=/home/">Logout</a></li>
 
             {% else %}  
-                <li><a href="{% url 'auth_login' %}">Login</a></li>
                 <li><a href="{% url 'registration_register' %}">Register</a></li>
-
+                <li><a href="{% url 'auth_login' %}">Login</a></li>
             {% endif %}      
 
               </ul>
@@ -82,8 +82,15 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
-  <footer align = "center">
-        <p class="text-muted">Created by: Team Rocket<br/>Rendered by Bootstrap</p>
-  </footer>
+   
+          
+</div>
+
+    <footer class="site-footer" align=center>
+        <strong>Created by: Team <FONT COLOR="#FF0000">R</FONT>ocket<br/>Rendered by Bootstrap<br/><strong/>
+        <img src="{% static 'img/battleship0.png' %}" alt="battleship" width="25%" />
+    </footer>
+                
+
 
 </html>

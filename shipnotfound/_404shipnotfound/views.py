@@ -25,7 +25,7 @@ def register_profile(request):
         else:
             print profile_form.errors
     else:
-        UserProfile.objects.get_or_create(user = request.user, high_score = 0, picture = "/static/img/ship.jpg")
+        UserProfile.objects.get_or_create(user = request.user, high_score = 0, picture = "/static/img/default.png")
         profile_form = UserProfileForm() 
     context_dict['profile_form'] = profile_form
     context_dict['registered'] = registered
