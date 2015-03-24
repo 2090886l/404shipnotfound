@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from  django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from _404shipnotfound.models import Game, UserProfile
 from _404shipnotfound.forms import UserProfileForm
 from django.contrib.auth.decorators import login_required
@@ -43,21 +43,24 @@ def home(request):
     games = 0
     wins = 0
     losses = 0
+    high_score = 0
+    max_date = Game.objects.latest('date').date
 
     try:
         userprofile = UserProfile.objects.get(user = request.user.id)
+        high_score = userprofile.high_score
     except UserProfile.DoesNotExist:
         pass
 
     for game in Game.objects.all():
-		if request.user == game.user:		
-			if game.win == True:
-				wins = wins + 1
-			else:
-				losses = losses + 1
-			games = games + 1
+        if request.user == game.user:
+            if game.win == True:
+                wins = wins + 1
+            else:
+                losses = losses + 1
+            games = games + 1
 
-    return render(request, 'app/home.html', {"games" : list, "profile" : userprofile, "games_played" : games, "wins" : wins, "losses" : losses})
+    return render(request, 'app/home.html', {"games" : list, "profile" : userprofile, "games_played" : games, "wins" : wins, "losses" : losses, "last_played": max_date, "high_score": high_score})
 
 
 def howToPlay(request):
@@ -78,8 +81,17 @@ def record(request, type, score):
                 Game.objects.create(user = request.user, score = score, win = True)
             else:
                 Game.objects.create(user = request.user, score = score, win = False)
-        except:
+        except Game.DoesNotExist:
             pass
+
+        try:
+            userprofile = UserProfile.objects.get(user = request.user)
+            if score > userprofile.high_score:
+                userprofile.high_score = score
+                userprofile.save()
+        except UserProfile.DoesNotExist:
+            pass
+
     return HttpResponseRedirect('/home')
     
 # @login_required  
