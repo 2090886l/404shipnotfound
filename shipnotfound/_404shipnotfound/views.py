@@ -25,6 +25,7 @@ def register_profile(request):
         else:
             print profile_form.errors
     else:
+        UserProfile.objects.get_or_create(user = request.user, high_score = 0, picture = "/static/img/ship.jpg")
         profile_form = UserProfileForm() 
     context_dict['profile_form'] = profile_form
     context_dict['registered'] = registered
@@ -44,27 +45,34 @@ def home(request):
     wins = 0
     losses = 0
     high_score = 0
-    max_date = Game.objects.latest('date').date
+    max_date = "No games played yet."
     if request.user.is_authenticated():
 
         try:
             userprofile = UserProfile.objects.get(user = request.user.id)
             high_score = userprofile.high_score
         except UserProfile.DoesNotExist:
-            userprofile = UserProfile.objects.create(user = request.user, high_score = 0, picture = "/static/img/ship.jpg")
             pass
-
+        
+        flag = True;
         for game in Game.objects.all():
+
             if request.user == game.user:
+                if flag:
+                    max_date = game.date
+                    flag = False
+                if game.date > max_date:
+                    max_date = game.date               
                 if game.win == True:
                     wins = wins + 1
                 else:
                     losses = losses + 1
                 games = games + 1
 
-    return render(request, 'app/home.html', {"games" : list, "profile" : userprofile, "games_played" : games, "wins" : wins, "losses" : losses, "last_played": max_date, "high_score": high_score})
-
-
+        return render(request, 'app/home.html', {"games" : list, "profile" : userprofile, "games_played" : games, "wins" : wins, "losses" : losses, "last_played": max_date, "high_score": high_score})
+    
+    return render(request, 'app/home.html')
+    
 def howToPlay(request):
 
     return render(request, 'app/how_to_play.html')
@@ -74,7 +82,6 @@ def play(request, difficulty):
     return render(request, 'app/play.html', {"difficulty" : difficulty})
     
     
-
 def record(request, type, score):
 
     if request.user.is_authenticated():
