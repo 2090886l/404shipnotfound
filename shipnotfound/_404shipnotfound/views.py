@@ -71,7 +71,7 @@ def home(request):
 
         return render(request, 'app/home.html', {"games" : list, "profile" : userprofile, "games_played" : games, "wins" : wins, "losses" : losses, "last_played": max_date, "high_score": high_score})
     
-    return render(request, 'app/home.html')
+    return render(request, 'app/home.html', {"games" : list})
     
 def howToPlay(request):
 
