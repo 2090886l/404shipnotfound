@@ -8,8 +8,7 @@ from django.contrib.auth.decorators import login_required
 def register_profile(request):
     context_dict = {}
     registered = False
-    if request.method == 'POST':
-        
+    if request.method == 'POST':      
         try:
             profile = UserProfile.objects.get(user=request.user)
             profile_form = UserProfileForm(request.POST, instance=profile)
@@ -25,7 +24,10 @@ def register_profile(request):
         else:
             print profile_form.errors
     else:
-        UserProfile.objects.get_or_create(user = request.user, high_score = 0, picture = "/static/img/default.png")
+        try:      
+            UserProfile.objects.get(user=request.user)
+        except:
+            UserProfile.objects.create(user = request.user, high_score = 0, picture = "/static/img/default.png")
         profile_form = UserProfileForm() 
     context_dict['profile_form'] = profile_form
     context_dict['registered'] = registered
