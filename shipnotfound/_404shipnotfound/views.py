@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from _404shipnotfound.models import Game, UserProfile
 from _404shipnotfound.forms import UserProfileForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 @login_required
 def register_profile(request):
@@ -51,7 +52,7 @@ def home(request):
     if request.user.is_authenticated():
 
         try:
-            userprofile = UserProfile.objects.get(user = request.user.id)
+            userprofile = UserProfile.objects.get(user = request.user)
             high_score = userprofile.high_score
         except UserProfile.DoesNotExist:
             pass
@@ -105,7 +106,45 @@ def record(request, type, score):
             pass
     return HttpResponseRedirect('/home')
     
-# @login_required  
-# def win(request):
+def profile(request, user_name):
+    userprofile = " "
+    games = 0
+    wins = 0
+    losses = 0
+    high_score = 0
+    max_date = "No games played yet."
+    
+    context_dict = {}
+    try:  
+        user = User.objects.get(username=user_name)
 
-    # return render(request, 'app/play.html')    
+        context_dict['username'] = user
+    except:
+        pass
+    try:
+        profile = UserProfile.objects.get(user=user)
+        high_score = profile.high_score
+        context_dict['profile'] = profile
+        flag = True;
+        for game in Game.objects.all():
+
+            if user == game.user:
+                if flag:
+                    max_date = game.date
+                    flag = False
+                if game.date > max_date:
+                    max_date = game.date               
+                if game.win == True:
+                    wins = wins + 1
+                else:
+                    losses = losses + 1
+                games = games + 1
+        context_dict['games_played'] = games
+        context_dict['wins'] = wins
+        context_dict['losses'] = losses
+        context_dict['high_score'] = high_score
+        context_dict['last_played'] = max_date
+    except:
+        pass
+  
+    return render(request, 'app/profile.html', context_dict)

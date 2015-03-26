@@ -1,0 +1,24 @@
+Lab 4 mark tally 
+Ivaylo Lafchiev
+
+Linux Questions: 30/30
+1) 10/10
+2) 6/6
+3) 7/7
+4) 7/7
+
+C Questions: 22/28
+1a ) 1/1 
+1b ) 1/1 
+1c ) 1/1 
+2a ) 1/1 
+2b ) 0/1 * need to say "int myfun(void)", myfun() can take unspecified number of parameters
+2c ) 1/1 well.. technically before function is first called, so not strictly before main()
+3a ) 1/1 
+3b ) 0/1 * "double *ptr_var;" will do. not sure what you're trying to do with "$" 
+4a ) 1/1 
+4b ) 1/1 
+4c ) 4/4
+4d ) 0/1 * Yes, depends how the OS manages its RAM. (try opening a new terminal shell and re-run, think it should be different.)
+Ex1) 6/8 ** doesn't compile, sqr_dist needs to be outside main. It doesn't need to be surrounded by [square brackets], you mean {curly brackets?} . either put function before main or put function prototype before main (better for bigger projects)
+Ex2) 6/7 * works nicely, no comments though, an introduction of what the program does (temperature conversion)  at the beginning and/or inline comments needed.

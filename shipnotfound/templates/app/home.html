@@ -11,7 +11,7 @@
                     <img alt = "User's photo" src = "{{profile.picture.url}}" class = "img-thumbnail">
                     <p><b>Last Played:</b> {{ last_played }} <br/>
                         <b> High Score:</b> {{ high_score }} <br/>
-                        <b> Plays:</b> {{ games_played }}<br/>
+                        <b> Plays:</b> {{ games_played }}h<br/>
                         <b> Wins:</b> {{ wins }}<br/>
                         <b> Losses:</b> {{ losses }}</p>
                 {% else %}
@@ -48,7 +48,7 @@
                     </tr>
                     {% for game in games %}
                          <tr class="warning">
-                            <td>{{ game.user }}</td>
+                            <td><a href="{% url 'profile' game.user %}"> {{game.user}}</a></td>
                             <td>{{ game.score }}</td>
                             <td>{{ game.date }}</td>
                         </tr>
@@ -58,6 +58,17 @@
                 <strong> No games found! </strong>
 
             {% endif %}
+            </br>
+            <form class="navbar-form navbar-left">
+                <input id="search" name="search" type="text" placeholder = "Input player name">
+                <input class = 'btn btn-default' type="button" name="submit" id="submit" value="Submit">
+                <script>
+                    document.getElementById('submit').onclick = function() {
+                        window.location.replace("/profile/" + document.getElementById('search').value);
+                    };
+                </script>
+            </form>
+
             </div>
 
         </div>

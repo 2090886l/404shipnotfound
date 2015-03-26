@@ -18,6 +18,7 @@
       <script src="{% static 'js/code.js' %}"></script>
       <script src="{% static 'js/ships.js' %}"></script>
       <link href="/static/css/bootswatch.css" rel="stylesheet">
+      <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
       <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
 
@@ -43,6 +44,16 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+             <form class="navbar-form navbar-left">
+                <span class="glyphicon glyphicon-search"></span></button> 
+                <input id="search" name="search" type="text" placeholder = "Input player name">
+                <input class = 'btn btn-default' type="button" name="submit" id="submit" value="Submit"> 
+                <script>
+                    document.getElementById('submit').onclick = function() {
+                        window.location.replace("/profile/" + document.getElementById('search').value);
+                    };
+                </script>
+            </form>
             <li><a href="{% url 'home' %}?next=/home/">Home</a></li>
             <li><a href="{% url 'howToPlay' %}">Help</a></li>     
             {% if user.is_authenticated %}
