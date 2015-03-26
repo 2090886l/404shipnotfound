@@ -6,6 +6,7 @@ class UserProfile(models.Model):
     high_score = models.IntegerField(default=0)
     picture = models.ImageField(upload_to='profile_images', blank=True)
 
+    # when saved make sure high_score is not negative
     def save(self, *args, **kwargs):
         if self.high_score < 0:
             self.high_score = 0
@@ -20,6 +21,7 @@ class Game(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     win = models.BooleanField(default=False)
 
+    # when saved make sure score is not negative
     def save(self, *args, **kwargs):
         if self.score < 0:
             self.score = 0
