@@ -17,7 +17,7 @@
             
       <script src="{% static 'js/code.js' %}"></script>
       <script src="{% static 'js/ships.js' %}"></script>
-      <link href="/static/css/bootswatch.css" rel="stylesheet">
+      <link rel="stylesheet" type ="text/css" href="{% static 'css/bootswatch.css' %}">
       <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
       <link href="http://getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
@@ -50,7 +50,9 @@
                 <input class = 'btn btn-default' type="button" name="submit" id="submit" value="Submit"> 
                 <script>
                     document.getElementById('submit').onclick = function() {
-                        window.location.replace("/profile/" + document.getElementById('search').value);
+                        if (document.getElementById('search').value != '') {
+                            window.location.replace("/profile/" + document.getElementById('search').value);
+                        }
                     };
                 </script>
             </form>
