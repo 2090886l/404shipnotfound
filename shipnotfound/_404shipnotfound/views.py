@@ -86,7 +86,6 @@ def play(request, difficulty):
     return render(request, 'app/play.html', {"difficulty" : difficulty})
     
 # view responsible for recording games    
-@login_required   
 def record(request, type, score):
 
     if request.user.is_authenticated():
