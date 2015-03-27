@@ -15,7 +15,7 @@ def populate():
     user1=add_player("George", "clooney", "george@gmail.com", 69)
     user2=add_player("test", "test", "test@test.com", 68)
     user3=add_player("Sam", "sammy123", "Sam@gmail.com", 29)
-    user4=add_player("Bob", "thebuilder", "Bobby@yahoo.com", 0)
+    user4=add_player("Bob", "thebuilder", "Bobby@yahoo.com", 56)
     user5=add_player("TheDestroyer", "42069", "destroy@kill.com", 12)
 
     add_game(user1, 69, True)
@@ -28,7 +28,7 @@ def populate():
 
 
 def add_game(user, score, win):
-    g = Game.objects.get_or_create(user = user, score = score)[0]
+    g = Game.objects.get_or_create(user = user, score = score, win = win)[0]
     return g
 
 def add_player(name, pw, email, highscore):
@@ -38,7 +38,7 @@ def add_player(name, pw, email, highscore):
         user = User(username=name, email=email)
         user.set_password(pw)
         user.save()
-        profile = UserProfile(user=user, picture = "/static/img/default.png", highscore = highscore)
+        profile = UserProfile(user=user, picture = "/static/img/default.png", high_score = highscore)
         profile.save()
     return user
 

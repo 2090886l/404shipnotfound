@@ -31,5 +31,5 @@ Test Users:
 
 UserName: test Password: test
 
-UserName: George Password: test
+UserName: George Password: clooney
 
